@@ -35,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
           case 'Manicurista':
             nextScreen = const ManicuristaHome();
             break;
-          case 'Admin':
+          case 'Administrador':
             nextScreen = const AdminHome();
             break;
           default:

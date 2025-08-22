@@ -155,7 +155,7 @@ class ServicioAPi {
   final Dio _dio = Dio();
   final FlutterSecureStorage _storage = const FlutterSecureStorage();
   final String baseUrl =
-      'https://angelsuarez.pythonanywhere.com/api/citas/servicios/';
+      'https://angelsuarez.pythonanywhere.com/api/servicio/servicio/';
 
   Future<String?> _getToken() async {
     return await _storage.read(key: 'access_token');
@@ -236,7 +236,7 @@ class NovedadesApi {
   final Dio _dio = Dio();
   final FlutterSecureStorage _storage = const FlutterSecureStorage();
   final String baseUrl =
-      'https://angelsuarez.pythonanywhere.com/api/liquidaciones/novedades/';
+      'https://angelsuarez.pythonanywhere.com/api/manicurista/novedades/';
 
   Future<String?> _getToken() async {
     return await _storage.read(key: 'access_token');
@@ -289,7 +289,7 @@ class ManicuristasApi {
   final Dio _dio = Dio();
   final FlutterSecureStorage _storage = const FlutterSecureStorage();
   final String baseUrl =
-      'https://angelsuarez.pythonanywhere.com/api/usuarios/manicuristas/activos';
+      'https://angelsuarez.pythonanywhere.com/api/usuario/manicuristas/activos/';
 
   Future<String?> _getToken() async {
     return await _storage.read(key: 'access_token');
@@ -332,7 +332,7 @@ class EstadosCitasApi {
   final Dio _dio = Dio();
   final FlutterSecureStorage _storage = const FlutterSecureStorage();
   final String baseUrl =
-      'https://angelsuarez.pythonanywhere.com/api/citas/estados-cita/';
+      'https://angelsuarez.pythonanywhere.com/api/cita-venta/estados-cita/';
 
   Future<String?> _getToken() async {
     return await _storage.read(key: 'access_token');
@@ -353,7 +353,7 @@ class CitasApi {
   final Dio _dio = Dio();
   final FlutterSecureStorage _storage = const FlutterSecureStorage();
   final String baseUrl =
-      'https://angelsuarez.pythonanywhere.com/api/citas/citas-venta/';
+      'https://angelsuarez.pythonanywhere.com/api/cita-venta/';
 
   Future<String?> _getToken() async {
     return await _storage.read(key: 'access_token');
@@ -362,7 +362,7 @@ class CitasApi {
   Future<List<Map<String, dynamic>>> obtenerCitas() async {
     final token = await _getToken();
     final response = await _dio.get(
-      baseUrl,
+      'https://angelsuarez.pythonanywhere.com/api/cita-venta/citas-venta/',
       options: Options(headers: {'Authorization': 'Bearer $token'}),
     );
     return List<Map<String, dynamic>>.from(response.data);
@@ -388,7 +388,7 @@ class CitasApi {
   Future<List<Map<String, dynamic>>> obtenerCitasPorManicurista(int id) async {
     final token = await _getToken();
     final response = await _dio.get(
-      '$baseUrl?manicurista_id=$id',
+      'https://angelsuarez.pythonanywhere.com/api/cita-venta/citas-venta/manicurista_id=$id/',
       options: Options(headers: {'Authorization': 'Bearer $token'}),
     );
     return List<Map<String, dynamic>>.from(response.data);
@@ -397,7 +397,7 @@ class CitasApi {
   Future<List<Map<String, dynamic>>> detallesDeCita(int id) async {
     final token = await _getToken();
     final response = await _dio.get(
-      'https://angelsuarez.pythonanywhere.com/api/citas/servicios-cita/?cita_id=$id',
+      'https://angelsuarez.pythonanywhere.com/api/cita-venta/servicios-cita/?cita_id=$id',
       options: Options(headers: {'Authorization': 'Bearer $token'}),
     );
     return List<Map<String, dynamic>>.from(response.data);
@@ -406,7 +406,7 @@ class CitasApi {
   Future<List<Map<String, dynamic>>> obtenerCitasPorCliente(int id) async {
     final token = await _getToken();
     final response = await _dio.get(
-      '$baseUrl?cliente_id=$id',
+      'https://angelsuarez.pythonanywhere.com/api/cita-venta/citas-venta/?cliente_id=$id/',
       options: Options(headers: {'Authorization': 'Bearer $token'}),
     );
     return List<Map<String, dynamic>>.from(response.data);
@@ -417,7 +417,7 @@ class CitasApi {
   ) async {
     final token = await _getToken();
     final response = await _dio.post(
-      'https://angelsuarez.pythonanywhere.com/api/citas/servicios-cita/batch/',
+      'https://angelsuarez.pythonanywhere.com/api/cita-venta/servicios-cita/batch/',
       data: servicios,
       options: Options(headers: {'Authorization': 'Bearer $token'}),
     );
@@ -430,7 +430,7 @@ class CitasApi {
   Future<void> eliminarCita(int id) async {
     final token = await _getToken();
     await _dio.delete(
-      '$baseUrl$id/',
+      'https://angelsuarez.pythonanywhere.com/api/cita-venta/citas-venta/$id/',
       options: Options(headers: {'Authorization': 'Bearer $token'}),
     );
   }
